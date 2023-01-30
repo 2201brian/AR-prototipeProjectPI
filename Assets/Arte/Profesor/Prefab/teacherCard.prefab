@@ -354,7 +354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Rodr\xEDguez Carrillo"
+  m_text: Apellidos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0869182fde92ed14cb9455e16d5ce3f1, type: 2}
   m_sharedMaterial: {fileID: 6136687187714150096, guid: 0869182fde92ed14cb9455e16d5ce3f1,
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Directora
+  m_text: Cargo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -867,7 +867,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Paola Johana
+  m_text: Nombres
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 70704aae1054e004c8b71732cb3a8518, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea7175c2c453a354fb92a7018b64da14, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
