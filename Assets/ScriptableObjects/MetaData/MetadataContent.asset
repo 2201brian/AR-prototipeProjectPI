@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c918bf192c928ca4f81903fd8e75027c, type: 3}
+  m_Name: MetadataContent
+  m_EditorClassIdentifier: 
+  ardilla: {fileID: 6995930681293748428, guid: 27711b977d75fad44adcc8946cae9254, type: 3}
+  salon: {fileID: 7473898220911495993, guid: c922a521faddd34439c28dac4ccf31c3, type: 3}
+  profesores: {fileID: 3453234657613263578, guid: 3304c9823733cc54ea6d5edc7853a33e,
+    type: 3}

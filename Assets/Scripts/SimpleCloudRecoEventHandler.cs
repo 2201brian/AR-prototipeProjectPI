@@ -1,6 +1,7 @@
 using UnityEngine;
 using Vuforia;
 using UnityEngine.UI;
+using UnityEditor;
 
 
 public class SimpleCloudRecoEventHandler : MonoBehaviour
@@ -14,10 +15,14 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     public ImageTargetBehaviour ImageTargetTemplate;
 
     [Header("Metadata")]
+    [SerializeField] private int _idGroup;
     [SerializeField] private string _groupName;
     [SerializeField] private string _imageLogoGroup;
     [SerializeField] private Profesor[] _profesores;
     [SerializeField] private string[] _lineasInvestigacion;
+    [Space]
+    [SerializeField] private Transform _contentParent;
+    [SerializeField] private MetaDataSO _metadataSO;
 
     [Header("UI")]
     [SerializeField] private UnityEngine.UI.Image _scannigImage;
@@ -26,7 +31,10 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     [Space]
     [SerializeField] private Button _resetBtn;
 
-    
+    private GameObject _contentArdilla;
+    private GameObject _contentSalon;
+    private GameObject _contentProfesores;
+    GroupInfoHandlerCloud handlerInfoSalon;
 
     [System.Serializable]
     public struct Profesor
@@ -42,6 +50,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     [System.Serializable]
     public struct GrupoInvestigacion
     {
+        public string idGrupo;
         public string groupName;
         public string imageLogoGroup;
         public Profesor[] profesores;
@@ -114,10 +123,14 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
 
         Debug.LogFormat("<color=green>METADATA:</color> {0}",mTargetMetadata);
         ParseMetaDataJSON(mTargetMetadata);
+        ChangeContent(true);
+
+         mCloudRecoBehaviour.EnableObservers(cloudRecoSearchResult, ImageTargetTemplate.gameObject);
     }
     
     private void ParseMetaDataJSON(string metadataJSON){
         infoGrupo = JsonUtility.FromJson<GrupoInvestigacion>(metadataJSON);
+        _idGroup = int.Parse(infoGrupo.idGrupo);
         _groupName = infoGrupo.groupName;
         _imageLogoGroup = infoGrupo.imageLogoGroup;
         _profesores = infoGrupo.profesores;
@@ -132,7 +145,44 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
 
         _scannigImage.color = _TrueColor;
         _resetBtn.gameObject.SetActive(false);
+        ChangeContent(false);
     }
+
+    private void ChangeContent(bool show){
+        if(show)
+        {
+           _contentArdilla = Instantiate(_metadataSO.ardilla, _contentParent);
+           _contentSalon = Instantiate(_metadataSO.salon, _contentParent);
+           _contentProfesores = Instantiate(_metadataSO.profesores, _contentParent);
+           handlerInfoSalon = _contentSalon.GetComponent<GroupInfoHandlerCloud>();
+           handlerInfoSalon.SetInfoGroup(_groupName,_imageLogoGroup);
+           //falta inicalizar clase para el llamado
+           //SetInfoGroup(_groupName,_imageLogoGroup):
+        } 
+        else 
+        {
+            Destroy(_contentArdilla);
+            Destroy(_contentSalon);
+            Destroy(_contentProfesores);
+        }
+    }
+
+
+    /*
+    Traido de GroupInfoHandler
+    [Header("Referencias")]
+    [SerializeField] private TMP_Text nombreTxtField;
+    [SerializeField] private SpriteRenderer logoImage;
+
+    private void Start() {
+        logoImage.sprite = groupInfo.logoGI;
+        nombreTxtField.text = groupInfo.nameGI;
+    }
+
+    public void Execute(){
+        Application.OpenURL(groupInfo.webpageGI);
+    }
+    */
 
 
     /*
