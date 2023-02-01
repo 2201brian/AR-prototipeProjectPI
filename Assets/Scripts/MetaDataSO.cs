@@ -8,4 +8,5 @@ public class MetaDataSO : ScriptableObject
     public GameObject ardilla;
     public GameObject salon;
     public GameObject profesores;
+    public GameObject teacherCard;
 }

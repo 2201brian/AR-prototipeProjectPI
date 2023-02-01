@@ -16,3 +16,5 @@ MonoBehaviour:
   salon: {fileID: 7473898220911495993, guid: c922a521faddd34439c28dac4ccf31c3, type: 3}
   profesores: {fileID: 3453234657613263578, guid: 3304c9823733cc54ea6d5edc7853a33e,
     type: 3}
+  teacherCard: {fileID: 6593730326705395983, guid: df7f92ccd4b12564ea98a56af3bc816c,
+    type: 3}

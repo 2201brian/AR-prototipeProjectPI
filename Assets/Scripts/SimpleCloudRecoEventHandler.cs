@@ -21,7 +21,9 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     [SerializeField] private Profesor[] _profesores;
     [SerializeField] private string[] _lineasInvestigacion;
     [Space]
+    [Header("Content parent")]
     [SerializeField] private Transform _contentParent;
+    [Header("Prefabs")]
     [SerializeField] private MetaDataSO _metadataSO;
 
     [Header("UI")]
@@ -31,10 +33,15 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     [Space]
     [SerializeField] private Button _resetBtn;
 
+    //PREFABS TO USE
     private GameObject _contentArdilla;
     private GameObject _contentSalon;
-    private GameObject _contentProfesores;
+    private GameObject _contentCanvaTeachers;
+    private GameObject[] _contentTeacherCard;
+
+    //HANDLERS COMPONENTS OF THE PREFABS
     GroupInfoHandlerCloud handlerInfoSalon;
+    teacherCardHandler handlerTeacherCard;
 
     [System.Serializable]
     public struct Profesor
@@ -151,19 +158,41 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     private void ChangeContent(bool show){
         if(show)
         {
+            //LOAD PREFABS
            _contentArdilla = Instantiate(_metadataSO.ardilla, _contentParent);
            _contentSalon = Instantiate(_metadataSO.salon, _contentParent);
-           _contentProfesores = Instantiate(_metadataSO.profesores, _contentParent);
+           _contentCanvaTeachers = Instantiate(_metadataSO.profesores, _contentParent);
+
+           //_contentTeacherCard = Instantiate(_metadataSO.teacherCard, _contentParent);
+           //LOAD CONTENT
+           //load salon info 
            handlerInfoSalon = _contentSalon.GetComponent<GroupInfoHandlerCloud>();
            handlerInfoSalon.SetInfoGroup(_groupName,_imageLogoGroup);
-           //falta inicalizar clase para el llamado
-           //SetInfoGroup(_groupName,_imageLogoGroup):
+           //load cards profesores
+           LoadTeacherCards();
+           //To Be Specified
+           //handlerTeacherCard =  new teacherCardHandler();
+           //handlerTeacherCard.SetInfoTeacherCard()
+           
         } 
         else 
         {
             Destroy(_contentArdilla);
             Destroy(_contentSalon);
-            Destroy(_contentProfesores);
+            Destroy(_contentCanvaTeachers);
+        }
+    }
+
+    private void LoadTeacherCards()
+    {
+        _contentTeacherCard = new GameObject[_profesores.Length];
+        RectTransform canvasRectTransform = _contentCanvaTeachers.GetComponent<RectTransform>();
+        VerticalLayoutGroup layoutCanvaTeachers = _contentCanvaTeachers.GetComponent<VerticalLayoutGroup>();
+
+        for(int i=0; i<_contentTeacherCard.Length; i++)
+        {
+            _contentTeacherCard[i] =  Instantiate(_metadataSO.teacherCard, canvasRectTransform) as GameObject;
+            _contentTeacherCard[i].transform.SetParent(layoutCanvaTeachers.transform,false);
         }
     }
 
