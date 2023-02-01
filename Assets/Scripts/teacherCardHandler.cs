@@ -6,6 +6,10 @@ using TMPro;
 using static SimpleCloudRecoEventHandler;
 using static GroupInfoHandlerCloud;
 
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
+
 public class teacherCardHandler : MonoBehaviour
 {
     [Header("Referencias")]
@@ -35,17 +39,33 @@ public class teacherCardHandler : MonoBehaviour
         _apellidosTxt.text = infoProfesor.apellidos;
         _cargoTxt.text = infoProfesor.cargo;
 
-        Object[] imageSearchRslts = SearchImageInAssets(infoProfesor.profileImg,"Assets/Arte/Profesor/Images");
+        /*
+        Object[] imageSearchRslts = SearchProfileImageInAssets(infoProfesor.profileImg);
         Object imageSearchRslt = imageSearchRslts[0];
         if(imageSearchRslt is not null){
             Texture2D tex = imageSearchRslt as Texture2D;
             Sprite spriteProfileImage = Sprite.Create(imageSearchRslt as Texture2D, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f,0.5f));
             profileImage.sprite = spriteProfileImage;
         }
+        */
         //infoProfesor.email;
         //infoProfesor.urlProfile;
     }
+    /*
 
+    public static Object[] SearchProfileImageInAssets(string imageRefName){
+        string[] results = AssetDatabase.FindAssets(imageRefName, new[] {"Assets/Arte/Profesor/Images"});
+        Object[] imagenObj = new Object[1];
+
+        foreach (string result in results)
+        {
+            //Debug.Log(AssetDatabase.GUIDToAssetPath(result));
+            string imagePath = AssetDatabase.GUIDToAssetPath(result);
+            imagenObj[0] = AssetDatabase.LoadAssetAtPath(imagePath, typeof(Object));
+        }
+        return imagenObj;
+    }
+    */
 
     public void Execute(string type){
         switch(type)
