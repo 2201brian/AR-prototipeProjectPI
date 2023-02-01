@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static SimpleCloudRecoEventHandler;
+using static GroupInfoHandlerCloud;
 
 public class teacherCardHandler : MonoBehaviour
 {
-        [Header("Referencias")]
+    [Header("Referencias")]
     [SerializeField] private Image profileImage;
     [SerializeField] private TMP_Text _nombresTxt;
     [SerializeField] private TMP_Text _apellidosTxt;
@@ -17,9 +19,31 @@ public class teacherCardHandler : MonoBehaviour
     private string emailSubject = "Mensaje de saludo";
     private string emailBody = "Saludos profesor";
 
-    public void SetInfoTeacherCard()
+    public void SetInfoTeacherCards(Profesor[] infoProfesores)
     {
+        GameObject[] cardsInCanva = GameObject.FindGameObjectsWithTag("teacherCard");
+        
+        for(int i=0; i<cardsInCanva.Length; i++){
+            teacherCardHandler handlerCard = cardsInCanva[i].GetComponent<teacherCardHandler>();
+            handlerCard.SetInfoCard(infoProfesores[i]);
+        }
+    }
 
+    private void SetInfoCard(Profesor infoProfesor)
+    {
+        _nombresTxt.text = infoProfesor.nombres;
+        _apellidosTxt.text = infoProfesor.apellidos;
+        _cargoTxt.text = infoProfesor.cargo;
+
+        Object[] imageSearchRslts = SearchImageInAssets(infoProfesor.profileImg,"Assets/Arte/Profesor/Images");
+        Object imageSearchRslt = imageSearchRslts[0];
+        if(imageSearchRslt is not null){
+            Texture2D tex = imageSearchRslt as Texture2D;
+            Sprite spriteProfileImage = Sprite.Create(imageSearchRslt as Texture2D, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f,0.5f));
+            profileImage.sprite = spriteProfileImage;
+        }
+        //infoProfesor.email;
+        //infoProfesor.urlProfile;
     }
 
 

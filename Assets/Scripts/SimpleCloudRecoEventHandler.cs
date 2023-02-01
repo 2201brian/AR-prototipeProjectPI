@@ -170,9 +170,9 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
            handlerInfoSalon.SetInfoGroup(_groupName,_imageLogoGroup);
            //load cards profesores
            LoadTeacherCards();
-           //To Be Specified
-           //handlerTeacherCard =  new teacherCardHandler();
-           //handlerTeacherCard.SetInfoTeacherCard()
+           //Set Info
+           handlerTeacherCard =  new teacherCardHandler();
+           handlerTeacherCard.SetInfoTeacherCards(_profesores);
            
         } 
         else 

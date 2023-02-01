@@ -18,7 +18,7 @@ public class GroupInfoHandlerCloud : MonoBehaviour
 
     public void SetInfoGroup(string groupName,string imageLogoGroup){
         nombreTxtField.text = groupName;
-        Object[] imageSearchRslts = SearchImageInAssets(imageLogoGroup);
+        Object[] imageSearchRslts = SearchImageInAssets(imageLogoGroup, "Assets/Arte/Sprites/logosGIs");
         Object imageSearchRslt = imageSearchRslts[0];
         if(imageSearchRslt is not null){
             Texture2D tex = imageSearchRslt as Texture2D;
@@ -29,8 +29,8 @@ public class GroupInfoHandlerCloud : MonoBehaviour
         //logoImage.sprite = imageLogoGroup;
     }
 
-    public Object[] SearchImageInAssets(string imageRefName){
-        string[] results = AssetDatabase.FindAssets(imageRefName, new[] {"Assets/Arte/Sprites/logosGIs"});
+    public static Object[] SearchImageInAssets(string imageRefName, string path){
+        string[] results = AssetDatabase.FindAssets(imageRefName, new[] {path});
         Object[] imagenObj = new Object[1];
 
         foreach (string result in results)
