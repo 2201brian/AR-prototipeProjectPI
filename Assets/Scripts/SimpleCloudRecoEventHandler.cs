@@ -132,7 +132,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         ParseMetaDataJSON(mTargetMetadata);
         ChangeContent(true);
 
-         mCloudRecoBehaviour.EnableObservers(cloudRecoSearchResult, ImageTargetTemplate.gameObject);
+        mCloudRecoBehaviour.EnableObservers(cloudRecoSearchResult, ImageTargetTemplate.gameObject);
     }
     
     private void ParseMetaDataJSON(string metadataJSON){
@@ -163,7 +163,6 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
            _contentSalon = Instantiate(_metadataSO.salon, _contentParent);
            _contentCanvaTeachers = Instantiate(_metadataSO.profesores, _contentParent);
 
-           //_contentTeacherCard = Instantiate(_metadataSO.teacherCard, _contentParent);
            //LOAD CONTENT
            //load salon info 
            handlerInfoSalon = _contentSalon.GetComponent<GroupInfoHandlerCloud>();
@@ -195,39 +194,4 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
             _contentTeacherCard[i].transform.SetParent(layoutCanvaTeachers.transform,false);
         }
     }
-
-
-    /*
-    Traido de GroupInfoHandler
-    [Header("Referencias")]
-    [SerializeField] private TMP_Text nombreTxtField;
-    [SerializeField] private SpriteRenderer logoImage;
-
-    private void Start() {
-        logoImage.sprite = groupInfo.logoGI;
-        nombreTxtField.text = groupInfo.nameGI;
-    }
-
-    public void Execute(){
-        Application.OpenURL(groupInfo.webpageGI);
-    }
-    */
-
-
-    /*
-    void OnGUI() {
-      // Display current 'scanning' status
-      GUI.Box (new Rect(100,100,200,50), mIsScanning ? "Scanning" : "Not scanning");
-      // Display metadata of latest detected cloud-target
-      GUI.Box (new Rect(100,200,200,50), "Metadata: " + mTargetMetadata);
-      // If not scanning, show button
-      // so that user can restart cloud scanning
-      if (!mIsScanning) {
-          if (GUI.Button(new Rect(100,300,200,50), "Restart Scanning")) {
-          // Reset Behaviour
-          mCloudRecoBehaviour.enabled = true;
-          mTargetMetadata="";
-          }
-      }
-    }*/
 }

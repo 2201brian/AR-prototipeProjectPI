@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-#if UNITY_EDITOR
-    using UnityEditor;
-#endif
 
 public class GroupInfoHandlerCloud : MonoBehaviour
 {
@@ -20,7 +17,6 @@ public class GroupInfoHandlerCloud : MonoBehaviour
     public void SetInfoGroup(string groupName,string imageLogoGroup){
         nombreTxtField.text = groupName;
         Texture2D imageSearch = SearchImageInAssets("logosGIs", imageLogoGroup);
-        Debug.Log(imageSearch);
         if(imageSearch is not null){
             Sprite spriteLogo = Sprite.Create(imageSearch, new Rect(0, 0, imageSearch.width, imageSearch.height), new Vector2(0.5f,0.5f));
             logoImage.sprite = spriteLogo;

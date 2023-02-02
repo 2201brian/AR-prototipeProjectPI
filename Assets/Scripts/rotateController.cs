@@ -5,9 +5,9 @@ using System.Collections;
 
 public class rotateController : MonoBehaviour 
 {
-    private float xRotationSpeed = 100f;
-    private float yRotationSpeed = 100f;
-    private float zRotationSpeed = 100f;
+    private float xRotationSpeed = 5f;
+    private float yRotationSpeed = 5f;
+    private float zRotationSpeed = 5f;
 
     void Update()
     {
