@@ -167,11 +167,13 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
            //load salon info 
            handlerInfoSalon = _contentSalon.GetComponent<GroupInfoHandlerCloud>();
            handlerInfoSalon.SetInfoGroup(_groupName,_imageLogoGroup);
+           /*Let to interaction with sphers
            //load cards profesores
            LoadTeacherCards();
            //Set Info
            handlerTeacherCard =  new teacherCardHandler();
            handlerTeacherCard.SetInfoTeacherCards(_profesores);
+           */
            
         } 
         else 
@@ -182,7 +184,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         }
     }
 
-    private void LoadTeacherCards()
+    public void LoadTeacherCards()
     {
         _contentTeacherCard = new GameObject[_profesores.Length];
         RectTransform canvasRectTransform = _contentCanvaTeachers.GetComponent<RectTransform>();
@@ -192,6 +194,17 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         {
             _contentTeacherCard[i] =  Instantiate(_metadataSO.teacherCard, canvasRectTransform) as GameObject;
             _contentTeacherCard[i].transform.SetParent(layoutCanvaTeachers.transform,false);
+        }
+
+        handlerTeacherCard =  new teacherCardHandler();
+        handlerTeacherCard.SetInfoTeacherCards(_profesores);
+    }
+
+    public void DestroyTeacherCards()
+    {
+        foreach (GameObject card in _contentTeacherCard)
+        {
+            Destroy(card);
         }
     }
 }

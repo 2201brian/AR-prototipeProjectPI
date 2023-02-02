@@ -9,6 +9,7 @@ TagManager:
   - teacherCard
   - canvaTeachers
   - salon
+  - screh
   layers:
   - Default
   - TransparentFX
