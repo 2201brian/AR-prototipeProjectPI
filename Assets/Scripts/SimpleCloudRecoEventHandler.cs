@@ -18,6 +18,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     [SerializeField] private int _idGroup;
     [SerializeField] private string _groupName;
     [SerializeField] private string _imageLogoGroup;
+    [SerializeField] public string webpageGroup;
     [SerializeField] private Profesor[] _profesores;
     [SerializeField] private string[] _lineasInvestigacion;
     [Space]
@@ -60,6 +61,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         public string idGrupo;
         public string groupName;
         public string imageLogoGroup;
+        public string webpageGroup;
         public Profesor[] profesores;
         public string[] lineasInvestigacion;
     }
@@ -140,6 +142,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         _idGroup = int.Parse(infoGrupo.idGrupo);
         _groupName = infoGrupo.groupName;
         _imageLogoGroup = infoGrupo.imageLogoGroup;
+        webpageGroup = infoGrupo.webpageGroup;
         _profesores = infoGrupo.profesores;
         _lineasInvestigacion = infoGrupo.lineasInvestigacion;
     }

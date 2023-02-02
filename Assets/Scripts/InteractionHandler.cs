@@ -37,11 +37,9 @@ public class InteractionHandler : MonoBehaviour
     }
 
     void OnMouseDown() {
-        Debug.Log("Clicked");
         switch (_typeF)
         {
             case tipoFuncionalidad.Profesores:
-                Debug.Log("Profesores");
                 if(enabledStatus)
                 {
                     screh.DestroyTeacherCards();
@@ -55,6 +53,14 @@ public class InteractionHandler : MonoBehaviour
             case tipoFuncionalidad.LineasInvestigacion:
                 break;
             case tipoFuncionalidad.WebPage:
+                try
+                {
+                    Application.OpenURL(screh.webpageGroup);
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError(e);
+                }
                 break;
         }
     }
