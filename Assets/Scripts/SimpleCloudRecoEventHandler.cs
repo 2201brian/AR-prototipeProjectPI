@@ -184,6 +184,12 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         }
     }
 
+    //Call to play lineas de investigacion
+    public void playLineasInestigacion()
+    {
+        ardillaBehaviour.tellLineasInvestigacion(_idGroup);
+    }
+
     //ANIM AND AUDIO FOR FIRST RECOGNITION - BIENVENIDA ESCUELA Y PRESENTACION INTERFAZ
     void FirstRecognitionEvents()
     {

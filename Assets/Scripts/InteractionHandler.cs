@@ -50,8 +50,11 @@ public class InteractionHandler : MonoBehaviour
                     enabledStatus = true;
                 }
                 break;
+
             case tipoFuncionalidad.LineasInvestigacion:
+                screh.playLineasInestigacion();
                 break;
+
             case tipoFuncionalidad.WebPage:
                 try
                 {

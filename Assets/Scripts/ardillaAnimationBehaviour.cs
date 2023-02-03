@@ -11,6 +11,8 @@ public class ardillaAnimationBehaviour : MonoBehaviour
     private AudioSource audioSourceCmp;
     private AudioClip audioClip;
 
+    //private int idGrupo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,24 +24,24 @@ public class ardillaAnimationBehaviour : MonoBehaviour
     void Update()
     {
         anim.SetBool("greet",isGreeting);
-        anim.SetBool("talking",isTalking);
     }
 
     public void setBehaviour(){
         anim = GetComponent<Animator>();
         audioSourceCmp = GetComponent<AudioSource>();
+        //idGrupo = idGrupoMeta;
     }
 
     public void doGreetAnim()
     {   
-        
+
         isGreeting = true;
-        string audioName = "bienvenida-escuela";
-        audioClip = Resources.Load(string.Format("audioSources/{0}",audioName)) as AudioClip;
+        audioClip = searchAudioClip("bienvenida","escuela");
         audioSourceCmp.clip = audioClip;
         audioSourceCmp.PlayDelayed(2);
         Invoke("stopGreetAnim",audioSourceCmp.clip.length);
-
+        
+        //explicacion interfaz
         //doTalkingAnim("explicacion","interfaz");
         //Debug.Log(isGreeting);
     }
@@ -52,15 +54,35 @@ public class ardillaAnimationBehaviour : MonoBehaviour
 
     void doTalkingAnim(string funcionAudio, string nombreGrupo)
     {
-        isTalking = true;
-        audioClip = Resources.Load(string.Format("audioSources/{0}-{1}",funcionAudio,nombreGrupo)) as AudioClip;
+        anim.SetBool("talking",true);
+        audioClip = searchAudioClip(funcionAudio,nombreGrupo);
         audioSourceCmp.clip = audioClip;
         audioSourceCmp.PlayDelayed(0);
-        //Invoke("stopTalkingAnim",audioSourceCmp.clip.length);
+        Invoke("stopTalkingAnim",audioSourceCmp.clip.length);
     }
 
     private void stopTalkingAnim()
     {
-        isTalking = false;
+        anim.SetBool("talking",false);
+    }
+
+    //lineas de investigacion grupo, para boton
+    public void tellLineasInvestigacion(int idGrupo){
+        string grupo = "";
+        switch(idGrupo)
+        {
+            case 1:
+                grupo = "camaleon";
+                break;
+            case 2:
+                grupo = "avispa";
+                break;
+        }
+        doTalkingAnim("lineas",grupo);
+    }
+
+    private AudioClip searchAudioClip(string funcionAudio, string nombreGrupo)
+    {
+        return Resources.Load(string.Format("audioSources/{0}-{1}",funcionAudio, nombreGrupo)) as AudioClip;
     }
 }
