@@ -11,7 +11,7 @@ public class ardillaAnimationBehaviour : MonoBehaviour
     private AudioClip audioClip;
 
     //catch time of audio clips for presentation of a group
-    private float timer;
+    private float timer = 0;
     //id grupo detectado
     private int idGrupo;
 
@@ -45,11 +45,7 @@ public class ardillaAnimationBehaviour : MonoBehaviour
         timer += lengthAudioClip;
         Invoke("stopGreetAnim",lengthAudioClip);
         Invoke("explanationUI",lengthAudioClip + 3f);
-        Invoke("firstGroupWelcome",timer);
-         
-        //explicacion interfaz
-        //doTalkingAnim("explicacion","interfaz");
-        //Debug.Log(isGreeting);
+        //Invoke("firstGroupWelcome",timer);
     }
 
     private void stopGreetAnim()
@@ -66,7 +62,7 @@ public class ardillaAnimationBehaviour : MonoBehaviour
         float lengthAudioClip = audioSourceCmp.clip.length;
         if(nombreGrupo == "interfaz")
         {
-            timer += lengthAudioClip;
+            Invoke("firstGroupWelcome",lengthAudioClip + 2f);
         }
         Invoke("stopTalkingAnim",lengthAudioClip);
     }
