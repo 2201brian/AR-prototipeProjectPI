@@ -185,13 +185,13 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     }
 
     //Call to play lineas de investigacion
-    public void playLineasInestigacion()
+    public void playLineasInvestigacion()
     {
-        ardillaBehaviour.tellLineasInvestigacion(_idGroup);
+        ardillaBehaviour.tellSpeech("lineas",_idGroup);
     }
 
     //ANIM AND AUDIO FOR FIRST RECOGNITION - BIENVENIDA ESCUELA Y PRESENTACION INTERFAZ
-    void FirstRecognitionEvents()
+    private void FirstRecognitionEvents()
     {
         isFirstRecognitionMade = true;
         //ardillaBehaviour.
@@ -207,11 +207,14 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         {
             ardillaObj = ardillaObjSrch[0];
             ardillaBehaviour = ardillaObj.GetComponent<ardillaAnimationBehaviour>();
-            ardillaBehaviour.setBehaviour();
+            ardillaBehaviour.setBehaviour(_idGroup);
             //Consider events if it is the first recognition
             if(!isFirstRecognitionMade)
             {
                 FirstRecognitionEvents();
+            } else
+            {
+                ardillaBehaviour.tellSpeech("bienvenida",_idGroup);
             }
         }
     }

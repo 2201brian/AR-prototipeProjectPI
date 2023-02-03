@@ -52,7 +52,7 @@ public class InteractionHandler : MonoBehaviour
                 break;
 
             case tipoFuncionalidad.LineasInvestigacion:
-                screh.playLineasInestigacion();
+                screh.playLineasInvestigacion();
                 break;
 
             case tipoFuncionalidad.WebPage:

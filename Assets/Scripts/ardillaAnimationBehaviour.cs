@@ -7,11 +7,13 @@ public class ardillaAnimationBehaviour : MonoBehaviour
 {
     private Animator anim;
     private bool isGreeting = false;
-    private bool isTalking = false;
     private AudioSource audioSourceCmp;
     private AudioClip audioClip;
 
-    //private int idGrupo;
+    //catch time of audio clips for presentation of a group
+    private float timer;
+    //id grupo detectado
+    private int idGrupo;
 
     // Start is called before the first frame update
     void Start()
@@ -26,22 +28,25 @@ public class ardillaAnimationBehaviour : MonoBehaviour
         anim.SetBool("greet",isGreeting);
     }
 
-    public void setBehaviour(){
+    public void setBehaviour(int idGrupoMeta){
         anim = GetComponent<Animator>();
         audioSourceCmp = GetComponent<AudioSource>();
-        //idGrupo = idGrupoMeta;
+        idGrupo = idGrupoMeta;
     }
 
     public void doGreetAnim()
     {   
-
+        float lengthAudioClip;
         isGreeting = true;
         audioClip = searchAudioClip("bienvenida","escuela");
         audioSourceCmp.clip = audioClip;
         audioSourceCmp.PlayDelayed(2);
-        Invoke("stopGreetAnim",audioSourceCmp.clip.length);
-        Invoke("explanationUI",audioSourceCmp.clip.length + 3f);
-        
+        lengthAudioClip = audioSourceCmp.clip.length;
+        timer += lengthAudioClip;
+        Invoke("stopGreetAnim",lengthAudioClip);
+        Invoke("explanationUI",lengthAudioClip + 3f);
+        Invoke("firstGroupWelcome",timer);
+         
         //explicacion interfaz
         //doTalkingAnim("explicacion","interfaz");
         //Debug.Log(isGreeting);
@@ -50,7 +55,6 @@ public class ardillaAnimationBehaviour : MonoBehaviour
     private void stopGreetAnim()
     {
         isGreeting = false;
-        Debug.Log(isGreeting);
     }
 
     void doTalkingAnim(string funcionAudio, string nombreGrupo)
@@ -59,7 +63,12 @@ public class ardillaAnimationBehaviour : MonoBehaviour
         audioClip = searchAudioClip(funcionAudio,nombreGrupo);
         audioSourceCmp.clip = audioClip;
         audioSourceCmp.PlayDelayed(0);
-        Invoke("stopTalkingAnim",audioSourceCmp.clip.length);
+        float lengthAudioClip = audioSourceCmp.clip.length;
+        if(nombreGrupo == "interfaz")
+        {
+            timer += lengthAudioClip;
+        }
+        Invoke("stopTalkingAnim",lengthAudioClip);
     }
 
     private void stopTalkingAnim()
@@ -73,9 +82,14 @@ public class ardillaAnimationBehaviour : MonoBehaviour
         doTalkingAnim("explicacion","interfaz");
     }
 
+    //presentacion primer grupo en detectar (Consider Refactoring this)
+    private void firstGroupWelcome()
+    {
+        tellSpeech("bienvenida",idGrupo);
+    }
 
     //lineas de investigacion grupo, para boton
-    public void tellLineasInvestigacion(int idGrupo){
+    public void tellSpeech(string speechType,int idGrupo){
         string grupo = "";
         switch(idGrupo)
         {
@@ -86,7 +100,7 @@ public class ardillaAnimationBehaviour : MonoBehaviour
                 grupo = "avispa";
                 break;
         }
-        doTalkingAnim("lineas",grupo);
+        doTalkingAnim(speechType,grupo);
     }
 
     private AudioClip searchAudioClip(string funcionAudio, string nombreGrupo)
