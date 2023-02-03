@@ -67,6 +67,9 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     }
 
     private GrupoInvestigacion infoGrupo;
+    private bool isFirstRecognitionMade;
+    private GameObject ardillaObj;
+    private ardillaAnimationBehaviour ardillaBehaviour;
 
     // Register cloud reco callbacks
     void Awake()
@@ -130,9 +133,11 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         // Stop the scanning by disabling the behaviour
         mCloudRecoBehaviour.enabled = false;
 
-        Debug.LogFormat("<color=green>METADATA:</color> {0}",mTargetMetadata);
+        //Debug.LogFormat("<color=green>METADATA:</color> {0}",mTargetMetadata);
         ParseMetaDataJSON(mTargetMetadata);
         ChangeContent(true);
+        //Calls to the object in scene and its handlers to play the anims and audios
+        SetArdillaHandlers();
 
         mCloudRecoBehaviour.EnableObservers(cloudRecoSearchResult, ImageTargetTemplate.gameObject);
     }
@@ -169,15 +174,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
            //LOAD CONTENT
            //load salon info 
            handlerInfoSalon = _contentSalon.GetComponent<GroupInfoHandlerCloud>();
-           handlerInfoSalon.SetInfoGroup(_groupName,_imageLogoGroup);
-           /*Let to interaction with sphers
-           //load cards profesores
-           LoadTeacherCards();
-           //Set Info
-           handlerTeacherCard =  new teacherCardHandler();
-           handlerTeacherCard.SetInfoTeacherCards(_profesores);
-           */
-           
+           handlerInfoSalon.SetInfoGroup(_groupName,_imageLogoGroup);           
         } 
         else 
         {
@@ -187,6 +184,33 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         }
     }
 
+    //ANIM AND AUDIO FOR FIRST RECOGNITION - BIENVENIDA ESCUELA Y PRESENTACION INTERFAZ
+    void FirstRecognitionEvents()
+    {
+        isFirstRecognitionMade = true;
+        //ardillaBehaviour.
+        //call  function of the ardillaObject to greet and presentation iu
+        ardillaBehaviour.doGreetAnim();
+    }
+
+    //Calls to the object in scene and its handlers to play the anims and audios
+    private void SetArdillaHandlers()
+    {
+        GameObject[] ardillaObjSrch = GameObject.FindGameObjectsWithTag("ardillaObject");
+        if(ardillaObjSrch.Length != 0)
+        {
+            ardillaObj = ardillaObjSrch[0];
+            ardillaBehaviour = ardillaObj.GetComponent<ardillaAnimationBehaviour>();
+            ardillaBehaviour.setBehaviour();
+            //Consider events if it is the first recognition
+            if(!isFirstRecognitionMade)
+            {
+                FirstRecognitionEvents();
+            }
+        }
+    }
+
+    //TEACHER CARDS AND THEIR CANVAS
     public void LoadTeacherCards()
     {
         _contentTeacherCard = new GameObject[_profesores.Length];
