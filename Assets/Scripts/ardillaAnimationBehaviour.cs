@@ -40,6 +40,7 @@ public class ardillaAnimationBehaviour : MonoBehaviour
         audioSourceCmp.clip = audioClip;
         audioSourceCmp.PlayDelayed(2);
         Invoke("stopGreetAnim",audioSourceCmp.clip.length);
+        Invoke("explanationUI",audioSourceCmp.clip.length + 3f);
         
         //explicacion interfaz
         //doTalkingAnim("explicacion","interfaz");
@@ -65,6 +66,13 @@ public class ardillaAnimationBehaviour : MonoBehaviour
     {
         anim.SetBool("talking",false);
     }
+
+    //explicacion interfaz
+    private void explanationUI()
+    {
+        doTalkingAnim("explicacion","interfaz");
+    }
+
 
     //lineas de investigacion grupo, para boton
     public void tellLineasInvestigacion(int idGrupo){
