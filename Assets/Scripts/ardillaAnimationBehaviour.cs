@@ -95,6 +95,21 @@ public class ardillaAnimationBehaviour : MonoBehaviour
             case 2:
                 grupo = "avispa";
                 break;
+            case 3:
+                grupo = "bioinformatica";
+                break;
+            case 4:
+                grupo = "gedi";
+                break;
+            case 5:
+                grupo = "gotic";
+                break;
+            case 6:
+                grupo = "guia";
+                break;
+            case 7:
+                grupo = "multimedia";
+                break;            
         }
         doTalkingAnim(speechType,grupo);
     }

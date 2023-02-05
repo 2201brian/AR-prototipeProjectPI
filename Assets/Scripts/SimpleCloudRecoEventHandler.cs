@@ -20,7 +20,6 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     [SerializeField] private string _imageLogoGroup;
     [SerializeField] public string webpageGroup;
     [SerializeField] private Profesor[] _profesores;
-    [SerializeField] private string[] _lineasInvestigacion;
     [Space]
     [Header("Content parent")]
     [SerializeField] private Transform _contentParent;
@@ -63,7 +62,6 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         public string imageLogoGroup;
         public string webpageGroup;
         public Profesor[] profesores;
-        public string[] lineasInvestigacion;
     }
 
     private GrupoInvestigacion infoGrupo;
@@ -149,7 +147,6 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         _imageLogoGroup = infoGrupo.imageLogoGroup;
         webpageGroup = infoGrupo.webpageGroup;
         _profesores = infoGrupo.profesores;
-        _lineasInvestigacion = infoGrupo.lineasInvestigacion;
     }
 
     public void ResetButton(){
@@ -222,7 +219,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     //TEACHER CARDS AND THEIR CANVAS
     public void LoadTeacherCards()
     {
-        _contentTeacherCard = new GameObject[_profesores.Length];
+        _contentTeacherCard = new GameObject[_profesores.Length];//THIS LINE PRODUCE WARNING
         RectTransform canvasRectTransform = _contentCanvaTeachers.GetComponent<RectTransform>();
         VerticalLayoutGroup layoutCanvaTeachers = _contentCanvaTeachers.GetComponent<VerticalLayoutGroup>();
 
