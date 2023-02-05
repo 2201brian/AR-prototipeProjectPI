@@ -307,7 +307,7 @@ RectTransform:
   m_GameObject: {fileID: 342530457}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5015, y: 3.5015, z: 3.5015}
+  m_LocalScale: {x: 2.3252761, y: 2.3252761, z: 2.3252761}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 622033471}
@@ -316,7 +316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000013563}
   m_SizeDelta: {x: 160, y: 52.0169}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &342530459
@@ -481,8 +481,8 @@ MonoBehaviour:
   _idGroup: 0
   _groupName: 
   _imageLogoGroup: 
+  webpageGroup: 
   _profesores: []
-  _lineasInvestigacion: []
   _contentParent: {fileID: 215398871}
   _metadataSO: {fileID: 11400000, guid: b465f7f91f884e5448499daba0e586e9, type: 2}
   _scannigImage: {fileID: 1544722152}
@@ -776,8 +776,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1509.9698}
-  m_SizeDelta: {x: -0.00012207, y: -3019.9397}
+  m_AnchoredPosition: {x: 0, y: -1588.6587}
+  m_SizeDelta: {x: -0.0001, y: -3177.3174}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &999391584
 MonoBehaviour:
