@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 7026684934360973750}
   - component: {fileID: 7026684934360973748}
   - component: {fileID: 7026684934360973751}
+  - component: {fileID: 2882453994352199748}
   m_Layer: 5
   m_Name: teacherCard
   m_TagString: Untagged
@@ -288,6 +289,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2882453994352199748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7026684934360973745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d11f9617c23d845a0dc53dad7db2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profileImage: {fileID: 7026684936159382964}
+  _nombresTxt: {fileID: 7026684935996600941}
+  _apellidosTxt: {fileID: 7026684934961830007}
+  _cargoTxt: {fileID: 7026684935610300360}
+  _spriteProfileImage: {fileID: 0}
+  _webpageUrl: 
+  _email: 
 --- !u!1 &7026684934961830001
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,7 +820,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7026684935835215844}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 07d11f9617c23d845a0dc53dad7db2d2, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7026684935996600943
 GameObject:
   m_ObjectHideFlags: 0

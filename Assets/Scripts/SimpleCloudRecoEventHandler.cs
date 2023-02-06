@@ -219,7 +219,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         }
     }
 
-    //TEACHER CARDS AND THEIR CANVAS
+    //This function creates the instances of the TEACHER CARDS in the canvas and pass the info of each teacher to the respective card
     public void LoadTeacherCards()
     {
         _contentTeacherCard = new GameObject[_profesores.Length];//warning
@@ -230,10 +230,12 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         {
             _contentTeacherCard[i] =  Instantiate(_metadataSO.teacherCard, canvasRectTransform) as GameObject;
             _contentTeacherCard[i].transform.SetParent(layoutCanvaTeachers.transform,false);
+            teacherCardHandler cardHandler = _contentTeacherCard[i].GetComponent<teacherCardHandler>();
+            cardHandler.SetInfoCard(_profesores[i]);
         }
 
-        handlerTeacherCard =  new teacherCardHandler();
-        handlerTeacherCard.SetInfoTeacherCards(_profesores);
+        //handlerTeacherCard =  new teacherCardHandler();
+        //handlerTeacherCard.SetInfoTeacherCards(_profesores);
     }
 
     //Destroy the teacher cards that have been loaded to the canvas
