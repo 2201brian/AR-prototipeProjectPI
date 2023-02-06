@@ -14,6 +14,7 @@ public class GroupInfoHandlerCloud : MonoBehaviour
 
     }
 
+    //Sets the logo sprite and the group name to the components of the prefab
     public void SetInfoGroup(string groupName,string imageLogoGroup){
         nombreTxtField.text = groupName;
         Texture2D imageSearch = SearchImageInAssets("logosGIs", imageLogoGroup);
@@ -21,47 +22,11 @@ public class GroupInfoHandlerCloud : MonoBehaviour
             Sprite spriteLogo = Sprite.Create(imageSearch, new Rect(0, 0, imageSearch.width, imageSearch.height), new Vector2(0.5f,0.5f));
             logoImage.sprite = spriteLogo;
         }
-        //BuscarLogo dentro de los assets  con el nombre en str imageLogoGroup para cambiar el sprite
-        //logoImage.sprite = imageLogoGroup;
     }
 
+    //Searche for a Texture2D in the Resources directory of the project
     public static Texture2D SearchImageInAssets(string directoryPath, string imageRefName){
        Texture2D imgRslt = Resources.Load(string.Format("{0}/{1}",directoryPath,imageRefName)) as Texture2D;
        return imgRslt;
     }
-
-    /*
-    public static Object[] SearchImageInAssets(string imageRefName){
-        string[] results = AssetDatabase.FindAssets(imageRefName, new[] {"Assets/Arte/Sprites/logosGIs"});
-        Object[] imagenObj = new Object[1];
-
-        foreach (string result in results)
-        {
-            //Debug.Log(AssetDatabase.GUIDToAssetPath(result));
-            string imagePath = AssetDatabase.GUIDToAssetPath(result);
-            imagenObj[0] = AssetDatabase.LoadAssetAtPath(imagePath, typeof(Object));
-        }
-        return imagenObj;
-    }
-    
-    /*
-    public static Object[] SearchImageInAssets(string imageRefName, string path){
-        string[] results = AssetDatabase.FindAssets(imageRefName, new[] {path});
-        Object[] imagenObj = new Object[1];
-
-        foreach (string result in results)
-        {
-            //Debug.Log(AssetDatabase.GUIDToAssetPath(result));
-            string imagePath = AssetDatabase.GUIDToAssetPath(result);
-            imagenObj[0] = AssetDatabase.LoadAssetAtPath(imagePath, typeof(Object));
-        }
-        return imagenObj;
-    }
-    */
-
-    /*
-    public void ExecuteUrl(){
-        Application.OpenURL(groupInfo.webpageGI);
-    }
-    */
 }

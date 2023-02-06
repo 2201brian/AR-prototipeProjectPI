@@ -140,6 +140,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         mCloudRecoBehaviour.EnableObservers(cloudRecoSearchResult, ImageTargetTemplate.gameObject);
     }
     
+    //This function parse the information received from the metadata file of a target
     private void ParseMetaDataJSON(string metadataJSON){
         infoGrupo = JsonUtility.FromJson<GrupoInvestigacion>(metadataJSON);
         _idGroup = int.Parse(infoGrupo.idGrupo);
@@ -149,6 +150,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         _profesores = infoGrupo.profesores;
     }
 
+    //This function enables the image tracking behaviour of vuforia and destroy the content loaded
     public void ResetButton(){
         // Reseting metadata str
         mTargetMetadata = "";
@@ -160,6 +162,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         ChangeContent(false);
     }
 
+    //This function is responsible of managing the load or delete of the visual content (3D caracter, the classroom prefab)
     private void ChangeContent(bool show){
         if(show)
         {
@@ -192,7 +195,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     {
         isFirstRecognitionMade = true;
         //ardillaBehaviour.
-        //call  function of the ardillaObject to greet and presentation iu
+        //call to function of the ardilla object to greet and present UI
         ardillaBehaviour.doGreetAnim();
     }
 
@@ -219,7 +222,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
     //TEACHER CARDS AND THEIR CANVAS
     public void LoadTeacherCards()
     {
-        _contentTeacherCard = new GameObject[_profesores.Length];//THIS LINE PRODUCE WARNING
+        _contentTeacherCard = new GameObject[_profesores.Length];//warning
         RectTransform canvasRectTransform = _contentCanvaTeachers.GetComponent<RectTransform>();
         VerticalLayoutGroup layoutCanvaTeachers = _contentCanvaTeachers.GetComponent<VerticalLayoutGroup>();
 
@@ -233,6 +236,7 @@ public class SimpleCloudRecoEventHandler : MonoBehaviour
         handlerTeacherCard.SetInfoTeacherCards(_profesores);
     }
 
+    //Destroy the teacher cards that have been loaded to the canvas
     public void DestroyTeacherCards()
     {
         foreach (GameObject card in _contentTeacherCard)

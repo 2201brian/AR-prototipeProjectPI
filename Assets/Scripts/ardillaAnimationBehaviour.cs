@@ -9,6 +9,16 @@ public class ardillaAnimationBehaviour : MonoBehaviour
     private bool isGreeting = false;
     private AudioSource audioSourceCmp;
     private AudioClip audioClip;
+    Dictionary<int, string> group =  
+        new Dictionary<int, string>(){
+                                            {1, "camaleon"},
+                                            {2, "avispa"},
+                                            {3, "bioinformatica"},
+                                            {4, "gedi"},
+                                            {5, "gotic"},
+                                            {6, "guia"},
+                                            {7, "multimedia"}
+                                        };
 
     //catch time of audio clips for presentation of a group
     private float timer = 0;
@@ -28,6 +38,7 @@ public class ardillaAnimationBehaviour : MonoBehaviour
         anim.SetBool("greet",isGreeting);
     }
 
+    
     public void setBehaviour(int idGrupoMeta){
         anim = GetComponent<Animator>();
         audioSourceCmp = GetComponent<AudioSource>();
@@ -86,34 +97,12 @@ public class ardillaAnimationBehaviour : MonoBehaviour
 
     //lineas de investigacion grupo, para boton
     public void tellSpeech(string speechType,int idGrupo){
-        string grupo = "";
-        switch(idGrupo)
-        {
-            case 1:
-                grupo = "camaleon";
-                break;
-            case 2:
-                grupo = "avispa";
-                break;
-            case 3:
-                grupo = "bioinformatica";
-                break;
-            case 4:
-                grupo = "gedi";
-                break;
-            case 5:
-                grupo = "gotic";
-                break;
-            case 6:
-                grupo = "guia";
-                break;
-            case 7:
-                grupo = "multimedia";
-                break;            
-        }
-        doTalkingAnim(speechType,grupo);
+
+        doTalkingAnim(speechType,group[idGrupo]);
+
     }
 
+    //Search an AudioClip in the Resources directory of the project with the format of * + "-" + *
     private AudioClip searchAudioClip(string funcionAudio, string nombreGrupo)
     {
         return Resources.Load(string.Format("audioSources/{0}-{1}",funcionAudio, nombreGrupo)) as AudioClip;

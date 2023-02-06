@@ -36,6 +36,7 @@ public class InteractionHandler : MonoBehaviour
         
     }
 
+    //Execute the respective actions in case of the event of OnMouseDown over the object that is attached to, currently the spheres
     void OnMouseDown() {
         switch (_typeF)
         {
